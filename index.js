@@ -32,6 +32,7 @@ export default (host) => {
     }))
 
   app.wingsService = (serviceName, query = {}, conf = {}) => {
+    if (!query.query) query.query = {}
     let event = new Event()
     let service = app.service(serviceName)
     let wings = {
@@ -49,6 +50,7 @@ export default (host) => {
     }
 
     wings.reset = (query, conf = {}) => {
+      if (!query.query) query.query = {}
       Object.assign(wings, {
         total: 0,
         data: [],
@@ -122,7 +124,7 @@ export default (host) => {
           return wings
         } catch (error) {
           wings.log(`${serviceName}.init`, error)
-          event.emit('dataChange', result.data)
+          event.emit('dataChange', wings.data)
         }
       })()
       return wings
