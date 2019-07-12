@@ -117,7 +117,7 @@ export default (host) => {
     wings.init = () => {
       (async () => {
         try {
-          let result = await service.find(query)
+          let result = await service.find(wings.query)
           wings = Object.assign(wings, result)
           event.emit('dataChange', result.data)
           wings.log(`${serviceName}.init`, result)
@@ -222,7 +222,7 @@ export default (host) => {
       let pages = ceil(wings.total / wings.limit)
       if (wings.page <= pages) {
         query.query.$skip = wings.page * wings.limit
-        let result = await service.find(query)
+        let result = await service.find(wings.query)
         ++wings.page
         wings.data = unionBy(wings.data, result.data, '_id')
         event.emit('dataChange', wings.data)
@@ -243,7 +243,7 @@ export default (host) => {
       wings.page = p
       // if (wings.page) {
       query.query.$skip = (wings.page - 1) * wings.limit
-      let result = await service.find(query)
+      let result = await service.find(wings.query)
       Object.assign(wings, result)
       event.emit('dataChange', wings.data)
       wings.log(`${serviceName}.loadPage`, result)
