@@ -30,7 +30,7 @@ yarn add wings-feathers
 ## Usage
 
 ```javascript
-import wings from  'wings-feathers'
+import wings from 'wings-feathers'
 // const wings = require('wings-feathers').default
 
 let app = wings('http://localhost:3030')
@@ -38,7 +38,7 @@ let app = wings('http://localhost:3030')
 let messagesSrvc = app.wingsService('messages')
 
 messagesSrvc.on('dataChange', (messages) => {
-	console.log(messages)
+  console.log(messages)
 })
 
 messagesSrvc.init()
@@ -170,4 +170,11 @@ loads the based on  `$skip` = `page` * `$limit`
 messagesSrvc.loadPage(2)
 ```
 
+## destroy
+destroys all listners created by `.on(eventName, listener)` function
+```javascript
+messagesSrvc.destroy()
+```
+
 # *Join and support our Community* <br /> **Web and Mobile Developers PH** <br/> [ [Facebook Page](https://fb.com/webmobile.ph) | [Group](https://fb.com/groups/webmobile.ph/) ]
+
