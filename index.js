@@ -117,7 +117,6 @@ export default (host) => {
         try {
           let result = await service.find(query)
           wings = Object.assign(wings, result)
-          event.emit('dataChange', result.data)
           wings.log(`${serviceName}.init`, result)
           return wings
         } catch (error) {
