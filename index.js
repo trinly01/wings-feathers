@@ -95,8 +95,6 @@ export default (host) => {
       stack.splice(2, 8)
       err.stack = stack.join('\n')
 
-      // console.log(file)
-
       if (wings.debug) console.log(title, style, file, err, '\n', ...arguments)
     }
 
@@ -106,7 +104,6 @@ export default (host) => {
         listener(...arguments, wings)
       })
       wings.listener = listener
-      console.log(event)
       return wings
     }
 
