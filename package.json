@@ -1,0 +1,50 @@
+{
+  "name": "wings-feathers",
+  "version": "4.0.0",
+  "description": "A FeathersJS 4-Way reactive data sync for any frontend framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trinly01/wings-feathers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trinly01/wings-feathers/issues"
+  },
+  "homepage": "https://github.com/trinly01/wings-feathers",
+  "keywords": [
+    "Feathers",
+    "FeathersJS",
+    "Vue",
+    "VueJS",
+    "Angular",
+    "Angular",
+    "React",
+    "ReactJS",
+    "Wings",
+    "WingsJS",
+    "reactive",
+    "observables",
+    "observable"
+  ],
+  "author": "Trinmar A Boado <timi.boado@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "@feathersjs/authentication-client": "^1.0.2",
+    "@feathersjs/feathers": "^3.0.5",
+    "@feathersjs/socketio-client": "^1.0.2",
+    "socket.io-client": "^2.0.4",
+    "localforage": "^1.7.2"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.4",
+    "@feathersjs/authentication-client": "^1.0.2",
+    "@feathersjs/feathers": "^3.0.5",
+    "@feathersjs/socketio-client": "^1.0.2",
+    "socket.io-client": "^2.0.4",
+    "localforage": "^1.7.2"
+  }
+}
