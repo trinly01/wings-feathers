@@ -31,6 +31,7 @@ yarn add wings-feathers
 
 ```javascript
 import  wings  from  'wings-feathers'
+// const wings = require('wings-feathers').default
 
 let app = wings('http://localhost:3030')
 
