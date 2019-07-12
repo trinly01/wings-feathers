@@ -30,18 +30,18 @@ yarn add wings-feathers
 ## Usage
 
 ```javascript
-import  wings  from  'wings-feathers'
+import wings from  'wings-feathers'
 // const wings = require('wings-feathers').default
 
 let app = wings('http://localhost:3030')
 
 let messagesSrvc = app.wingsService('messages')
 
-messageSrvc.on('dataChange', (messages) => {
+messagesSrvc.on('dataChange', (messages) => {
 	console.log(messages)
 })
 
-messageSrvc.init()
+messagesSrvc.init()
 ```
 ## app.wingsService(serviceName, params, config)
 Returns a wingsService `<object>`
@@ -75,7 +75,7 @@ let params = {
 
 let messagesSrvc = app.wingsService(serviceName, params)
 
-messageSrvc.on('dataChange', (messages) => {
+messagesSrvc.on('dataChange', (messages) => {
   console.log(messages)
   // [ { text: 'World', read: false, roomId: 2, nested: { prop: 'ford' } } ]
 })
