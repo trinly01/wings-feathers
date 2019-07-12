@@ -1,6 +1,6 @@
 {
   "name": "wings-feathers",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "A FeathersJS 4-Way reactive data sync for any frontend framework",
   "main": "index.js",
   "scripts": {

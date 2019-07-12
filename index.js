@@ -190,7 +190,9 @@ export default (host) => {
       let index = wings.findIndex(message)
       if (index !== -1) {
         wings.removeItem(index)
-        if (wings.data.length < wings.limit) wings.loadPage(1)
+        let dataLen = wings.data.length
+        if (wings.paginate && dataLen > 0 && dataLen < wings.limit) wings.loadPage(wings.page)
+        if (wings.paginate && dataLen === 0) wings.loadPage(wings.page - 1)
         wings.log(`${serviceName}.removed`, message, index)
         event.emit('dataChange', Array.from(wings.data))
       }
@@ -239,15 +241,13 @@ export default (host) => {
     }
 
     wings.loadPage = async (p = 1) => {
-      // let pages = ceil(wings.total / wings.limit)
+      wings.paginate = true
       wings.page = p
-      // if (wings.page) {
       query.query.$skip = (wings.page - 1) * wings.limit
       let result = await service.find(wings.query)
       Object.assign(wings, result)
       event.emit('dataChange', wings.data)
       wings.log(`${serviceName}.loadPage`, result)
-      // }
     }
 
     // wings.init()

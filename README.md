@@ -164,13 +164,13 @@ loads all data based on (`$skip` = `page` * `$limit`) * `pages`
 messagesSrvc.loadAll()
 ``` 
 
-## loadPage
+## loadPage(page)
 loads the based on  `$skip` = `page` * `$limit`
 ```javascript
 messagesSrvc.loadPage(2)
 ```
 
-## destroy
+## destroy()
 destroys all listners created by `.on(eventName, listener)` function
 ```javascript
 messagesSrvc.destroy()
