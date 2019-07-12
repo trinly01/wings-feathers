@@ -1,6 +1,6 @@
 {
   "name": "wings-feathers",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A FeathersJS 4-Way reactive data sync for any frontend framework",
   "main": "index.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "@feathersjs/authentication-client": "^1.0.2",
     "@feathersjs/feathers": "^3.0.5",
     "@feathersjs/socketio-client": "^1.0.2",
+    "@feathersjs/client": "^3.7.8",
     "socket.io-client": "^2.0.4",
     "localforage": "^1.7.2"
   },
