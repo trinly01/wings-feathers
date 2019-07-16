@@ -50,20 +50,19 @@ export default (host) => {
     }
 
     wings.reset = (query, conf = {}) => {
-      if (!query.query) query.query = {}
-      Object.assign(wings, {
-        total: 0,
-        data: [],
-        skip: 0,
-        page: 1,
-        limit: 10
-      })
-      wings.query = (query | wings.query)
-      wings.channels = (conf.channels | wings.channels)
-      wings.debug = (conf.debug | wings.debug)
-      wings.newDataPosition = (conf.newDataPosition | wings.newDataPosition)
-      wings.paginate = (conf.paginate | wings.paginate)
-      wings.log(`${serviceName}.reset`)
+      wings.total = 0
+      wings.data = []
+      wings.skip = 0
+      wings.page = 1
+      wings.limit = 10
+
+      wings.query = (query || wings.query)
+      if (!wings.query.query) wings.query.query = {}
+      wings.channels = (conf.channels || wings.channels)
+      wings.debug = (conf.debug || wings.debug)
+      wings.newDataPosition = (conf.newDataPosition || wings.newDataPosition)
+      wings.paginate = (conf.paginate || wings.paginate)
+      wings.log(`${serviceName}.reset`, wings.query)
       wings.init()
     }
 
@@ -111,6 +110,9 @@ export default (host) => {
 
     wings.destroy = () => {
       // event.removeAllListeners('dataChange')
+      app.io.removeListener('connect', wings.onConnect)
+      app.removeListener('authenticated', wings.onAuthenticated)
+      app.removeListener('logout', wings.onLogout)
       delete event._events
     }
 
@@ -250,7 +252,34 @@ export default (host) => {
       wings.log(`${serviceName}.loadPage`, result)
     }
 
-    // wings.init()
+    // app.io.on('disconnect', () => {
+    //   service.status = 'offline'
+    //   event.emit('dataChange', [...service.data])
+    //   service.logger('disconnect', service.status)
+    // })
+
+    wings.onConnect = () => {
+      if (wings.data.length) {
+        wings.log(`${serviceName}.onConnect`)
+        wings.reset()
+      }
+    }
+    app.io.on('connect', wings.onConnect)
+
+    wings.onLogout = () => {
+      wings.log(`${serviceName}.onLogout`)
+      wings.reset()
+    }
+    app.on('logout', wings.onLogout)
+
+    wings.onAuthenticated = () => {
+      if (wings.data.length) {
+        wings.log(`${serviceName}.onAuthenticated`)
+        wings.reset()
+      }
+    }
+    app.on('authenticated', wings.onAuthenticated)
+
     return wings
   }
 
