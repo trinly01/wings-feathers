@@ -225,7 +225,7 @@ export default (host) => {
     wings.loadMore = async () => {
       let pages = ceil(wings.total / wings.limit)
       if (wings.page <= pages) {
-        query.query.$skip = wings.page * wings.limit
+        wings.query.query.$skip = wings.page * wings.limit
         let result = await service.find(wings.query)
         ++wings.page
         wings.data = unionBy(wings.data, result.data, '_id')
@@ -245,7 +245,7 @@ export default (host) => {
     wings.loadPage = async (p = 1) => {
       wings.paginate = true
       wings.page = p
-      query.query.$skip = (wings.page - 1) * wings.limit
+      wings.query.query.$skip = (wings.page - 1) * wings.limit
       let result = await service.find(wings.query)
       Object.assign(wings, result)
       event.emit('dataChange', wings.data)
